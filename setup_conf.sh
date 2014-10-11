@@ -7,6 +7,10 @@ SHELLY_SUBS=(
 
 REPOS_PATH="$HOME/repos"
 
+META_LINKS=(
+    "https://raw.githubusercontent.com/forflo/shellyMeta/master/setup_conf.sh"
+    "https://raw.githubusercontent.com/forflo/shellyMeta/master/setup_lib.sh"
+)
 
 THIS_CONFIG=".environment.conf"
 
