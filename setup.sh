@@ -50,7 +50,7 @@ setup_loadFiles(){
 	)
 	
 	echo loading additional files
-	for i in ${META_LINKS[*]}; do
+	for i in ${meta_links[*]}; do
 		eval $(curl ${i}) || {
 			echo Could not evaluate code for ${i:0:30} ... .
 			return 1
