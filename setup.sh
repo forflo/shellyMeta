@@ -1,14 +1,12 @@
 #!/bin/bash
 
-echo installing shelly subsystems
-
+##
 # /home/<user>
 # -> repos/
 #		-> git/
 #		-> svn/
 #		-> mercurial/
 ##
-
 setup_createDirStruct(){
 	cd
 	
@@ -56,3 +54,21 @@ setup_dlRepos(){
 	
 	return 0
 }
+
+setup_init(){
+	echo installing shelly subsystems
+	
+	setup_createDirStruct || {
+		echo Could not setup the directory structure!
+		exit 1
+	}
+	
+	setup_dlRepos || {
+		echo Could not download other shelly repos
+		exit 1
+	}
+	
+	exit 0
+}
+
+setup_init
