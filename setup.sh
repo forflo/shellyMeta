@@ -13,31 +13,19 @@ setup_createDirStruct(){
 	clog 2 "[setup_createDirStruct()]" checking folder structure.
 	if [ -d ~/repos ]; then
 		clog 2 "[setup_createDirStruct()]" The folder ~/repos already exists.
-		clog 2 "[setup_createDirStruct()]" Do you want it to be deleted?
-		read -p "(yes/no) " READ_C
-		case "${READ_C}" in
-			([Yy][Ee][Ss])
-				rm -rf ~/repos
-				[ $? -gt 0 ] && {
-					clog 1 "[setup_createDirStruct()]" error "while" deleting!
-					return 1
-				}
-				;;
-			([Nn][Oo])
-				clog 1 "[setup_createDirStruct()]" Will not delete the existing repos.
-				;;
-			(*)
-				clog 1 "[setup_createDirStruct()]" You did not choose!
-				return 1
-				;;
-		esac
+		clog 2 "[setup_createDirStruct()]" Deleting ~/repos.
+	
+		rm -rf ~/repos && {
+			clog 1 "[setup_createDirStruct()]" error "while" deleting!
+			return 1
+		}
 	fi
 
 	clog 2 "[setup_createDirStruct()]" creating folder structure.
-	mkdir ~/repos 2> /dev/null || echo "[setup_createDirStruct()]" repos folder already existed.
-	mkdir ~/repos/git 2> /dev/null || echo "[setup_createDirStruct()]" git repo already folder existed.
-	mkdir ~/repos/svn || echo "[setup_createDirStruct()]" svn repo folder already existed.
-	mkdir ~/repos/mercurial || echo "[setup_createDirStruct()]" mercurial repo folder already existed.
+	mkdir ~/repos 2> /dev/null || echo "[setup_createDirStruct()]" Could not create folder repos
+	mkdir ~/repos/git 2> /dev/null || echo "[setup_createDirStruct()]" Could not create folder git
+	mkdir ~/repos/svn || echo "[setup_createDirStruct()]" Could not create foler svn
+	mkdir ~/repos/mercurial || echo "[setup_createDirStruct()]" Could not create folder mercurial
 	clog 2 "[setup_createDirStruct()]" folder structure has been created.
 	
 	return 0
