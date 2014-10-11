@@ -86,6 +86,6 @@ setup(){
 }
 
 echo Will delete everything in ~/repo
-echo continue in 20 seconds
-sleep 20
+echo continue in 5 seconds
+sleep 5
 setup
