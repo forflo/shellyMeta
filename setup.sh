@@ -44,12 +44,14 @@ setup_dlRepos(){
 }
 
 setup_loadFiles(){
-	local cnt=0
-	echo loading additional files
+	local meta_links=(
+    		"https://raw.githubusercontent.com/forflo/shellyMeta/master/setup_conf.sh"
+    		"https://raw.githubusercontent.com/forflo/shellyMeta/master/setup_lib.sh"
+	)
 	
+	echo loading additional files
 	for i in ${META_LINKS[*]}; do
-		curl -o file_$cnt ${i}
-		. file_$cnt || {
+		eval $(curl ${i}) || {
 			echo Could not evaluate code for ${i:0:30} ... .
 			return 1
 		}
