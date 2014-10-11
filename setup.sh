@@ -44,10 +44,12 @@ setup_dlRepos(){
 }
 
 setup_loadFiles(){
+	local cnt=0
 	echo loading additional files
 	
 	for i in ${META_LINKS[*]}; do
-		eval "$(curl ${i})" || {
+		curl -o file_$cnt ${i}
+		. file_$cnt || {
 			echo Could not evaluate code for ${i:0:30} ... .
 			return 1
 		}
