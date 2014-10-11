@@ -5,6 +5,8 @@ SHELLY_SUBS=(
     "https://github.com/forflo/shellyEditor.git"
 )
 
+REPOS_PATH="$HOME/repos"
+
 
 THIS_CONFIG=".environment.conf"
 
@@ -15,7 +17,6 @@ WIFI="no"
 EDITOR="vim"
 PKG_MGMT=""
 REPO="$HOME/environment/"
-REPOS_PATH="$HOME/repos"
 BASH_LIB="$REPO/code/shell/"
 GLOB_BASHRC="bashrc"
 GLOB_BASH_PROFILE="profile"
