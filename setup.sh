@@ -15,7 +15,7 @@ setup_createDirStruct(){
 		clog 2 "[setup_createDirStruct()]" The folder ~/repos already exists.
 		clog 2 "[setup_createDirStruct()]" Deleting ~/repos.
 	
-		rm -rf ~/repos && {
+		rm -rf ~/repos || {
 			clog 1 "[setup_createDirStruct()]" error "while" deleting!
 			return 1
 		}
