@@ -32,7 +32,7 @@ setup_createDirStruct(){
 }
 
 setup_dlRepos(){
-	cd ${REPOS_PATH}
+	cd ${REPOS_PATH}/git/
 	for i in ${SHELLY_SUBS[*]}; do
 		git clone "$i" || {
 			clog 1 "[setup_dlRepos()]" Could not clone Repo ${i:0:20} ...
