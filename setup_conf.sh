@@ -5,3 +5,4 @@ SHELLY_SUBS=(
     "https://github.com/forflo/shellyEditor.git"
 )
 
+REPOS_PATH="$HOME/repos"
