@@ -46,6 +46,8 @@ shellyMeta_runSubShelly(){
 		cd ..
 	done
 	
+	cd $oldpwd
+	
 	return 0
 }
 
@@ -79,18 +81,18 @@ shellyMeta_loadFiles(){
 }
 
 shellyMeta_init(){
-	setup_loadFiles || {
+	shellyMeta_loadFiles || {
 		echo Could not get library files
 		exit 1
 	}
 	
 	clog 2 "[shellyMeta_init()]" installing shelly subsystems.
-	setup_createDirStruct || {
+	shellyMeta_createDirStruct || {
 		clog 1 "[shellyMeta_init()]" Could not setup the directory structure!
 		exit 1
 	}
 	
-	setup_dlRepos || {
+	shellyMeta_dlRepos || {
 		clog 1 "[shellyMeta_init()]" Could not download other shelly repos!
 		exit 1
 	}
