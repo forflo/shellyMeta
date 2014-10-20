@@ -60,7 +60,7 @@ shellyMeta_createDirStruct(){
 ##
 shellyMeta_runSubShelly(){
 	local oldpwd=$PWD
-	clog 2 "[shellyMeta_runSubShelly()]" Will now run shelly{Code,Repo,Editor,Config} .
+	clog 2 "[shellyMeta_runSubShelly()]" Will now run ${SHELLY_SUBS[*]}.
 	
 	cd ${REPOS_PATH}/git/
 	for i in ${SHELLY_SUBS[*]}; do
