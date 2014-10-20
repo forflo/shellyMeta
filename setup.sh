@@ -6,6 +6,14 @@
 #		-> svn/
 #		-> mercurial/
 ##
+
+##
+# Creates directory structure for repositories
+# Param:
+#   <void>
+# Return:
+#   0 on success and 1 on error
+##
 shellyMeta_createDirStruct(){
 	local err="0"
 	cd
@@ -47,12 +55,15 @@ shellyMeta_createDirStruct(){
 	[ $err -gt 0 ] && return 1 || return 0
 }
 
+##
+# Runs sub-shellys
+##
 shellyMeta_runSubShelly(){
 	local oldpwd=$PWD
-	clog 2 "[shellyMeta_runSubShelly()]" Will now run subshellies.
+	clog 2 "[shellyMeta_runSubShelly()]" Will now run shelly{Code,Repo,Editor,Config} .
 	
 	cd ${REPOS_PATH}/git/
-	for i in *; do
+	for i in ${SHELLY_SUBS[*]}; do
 		clog 2 "[shellyMeta_runSubShelly()]" Starting init.sh of $i.
 		cd $i
 		. init.sh || {
@@ -69,7 +80,7 @@ shellyMeta_runSubShelly(){
 
 shellyMeta_dlRepos(){
 	cd ${REPOS_PATH}/git/
-	for i in ${SHELLY_SUBS[*]}; do
+	for i in $(eval echo https://github.com/forflo/{$(echo ${SHELLY_SUBS[*]} | tr " " ",")}.git); do
 		git clone "$i" || {
 			clog 1 "[shellyMeta_dlRepos()]" Could not clone Repo ${i:0:20} ...
 			return 1
@@ -96,25 +107,25 @@ shellyMeta_loadFiles(){
 	return 0
 }
 
-shellyMeta_init(){
+main(){
 	shellyMeta_loadFiles || {
-		echo Could not get library files
-		exit 1
+		echo Could not get library files!
+		return 0
 	}
 	
-	clog 2 "[shellyMeta_init()]" installing shelly subsystems.
+	clog 2 "[main()]" Installing shelly subsystems.
 	shellyMeta_createDirStruct || {
-		clog 1 "[shellyMeta_init()]" Could not setup the directory structure!
+		clog 1 "[main()]" Could not setup the directory structure!
 		exit 1
 	}
 	
 	shellyMeta_dlRepos || {
-		clog 1 "[shellyMeta_init()]" Could not download other shelly repos!
+		clog 1 "[main()]" Could not download other shelly repos!
 		exit 1
 	}
 	
 	shellyMeta_runSubShelly || {
-		clog 1 "[shellyMeta_init()]" Could not run all shelly repo hooks!
+		clog 1 "[main()]" Could not run all shelly repo hooks!
 		exit 1
 	}
 	
@@ -125,3 +136,5 @@ echo Will delete everything in ~/repo
 echo continue in 5 seconds!
 sleep 5
 shellyMeta_init
+
+main && exit 0 || exit 1
