@@ -7,6 +7,7 @@
 #		-> mercurial/
 ##
 shellyMeta_createDirStruct(){
+	local err="0"
 	cd
 	
 	clog 2 "[shellyMeta_createDirStruct()]" checking folder structure.
@@ -21,13 +22,29 @@ shellyMeta_createDirStruct(){
 	fi
 
 	clog 2 "[shellyMeta_createDirStruct()]" creating folder structure.
-	mkdir ~/repos 2> /dev/null || echo "[shellyMeta_createDirStruct()]" Could not create folder repos
-	mkdir ~/repos/git 2> /dev/null || echo "[shellyMeta_createDirStruct()]" Could not create folder git
-	mkdir ~/repos/svn || echo "[shellyMeta_createDirStruct()]" Could not create foler svn
-	mkdir ~/repos/mercurial || echo "[shellyMeta_createDirStruct()]" Could not create folder mercurial
+	mkdir ~/repos 2> /dev/null || {
+		echo "[shellyMeta_createDirStruct()]" Could not create folder repos!
+		((err++))
+	}
+	
+	mkdir ~/repos/git 2> /dev/null || {
+		echo "[shellyMeta_createDirStruct()]" Could not create folder git!
+		((err++))
+	}
+	
+	mkdir ~/repos/svn || {
+		echo "[shellyMeta_createDirStruct()]" Could not create foler svn!
+		((err++))
+	}
+	
+	mkdir ~/repos/mercurial || {
+		echo "[shellyMeta_createDirStruct()]" Could not create folder mercurial!
+		((err++))
+	}
+	
 	clog 2 "[shellyMeta_createDirStruct()]" folder structure has been created.
 	
-	return 0
+	[ $err -gt 0 ] && return 1 || return 0
 }
 
 shellyMeta_runSubShelly(){
