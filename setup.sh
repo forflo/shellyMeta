@@ -1,6 +1,5 @@
 #!/bin/bash
-
-##
+#
 # /home/<user>
 # -> repos/
 #		-> git/
