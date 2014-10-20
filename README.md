@@ -17,3 +17,6 @@ Links
 =====
 Link to the raw setup.sh: http://bit.ly/1wg9vdQ
 
+Start of shellyMeta
+===================
+Just type in "$ curl -L bit.ly/1wg9vdQ | bash" and you should be fine.
