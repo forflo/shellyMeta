@@ -110,31 +110,30 @@ shellyMeta_loadFiles(){
 main(){
 	shellyMeta_loadFiles || {
 		echo Could not get library files!
-		return 0
+		return 1
 	}
 	
 	clog 2 "[main()]" Installing shelly subsystems.
 	shellyMeta_createDirStruct || {
 		clog 1 "[main()]" Could not setup the directory structure!
-		exit 1
+		return 1
 	}
 	
 	shellyMeta_dlRepos || {
 		clog 1 "[main()]" Could not download other shelly repos!
-		exit 1
+		return 1
 	}
 	
 	shellyMeta_runSubShelly || {
 		clog 1 "[main()]" Could not run all shelly repo hooks!
-		exit 1
+		return 1
 	}
 	
-	exit 0
+	return 0
 }
 
 echo Will delete everything in ~/repo
 echo continue in 5 seconds!
 sleep 5
-shellyMeta_init
 
 main && exit 0 || exit 1
