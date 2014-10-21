@@ -62,18 +62,17 @@ shellyMeta_runSubShelly(){
 	local oldpwd=$PWD
 	clog 2 "[shellyMeta_runSubShelly()]" Will now run ${SHELLY_SUBS[*]}.
 	
-	cd ${REPOS_PATH}/git/
+	pushd ${REPOS_PATH}/git/
 	for i in ${SHELLY_SUBS[*]}; do
 		clog 2 "[shellyMeta_runSubShelly()]" Starting init.sh of $i.
-		cd $i
+		pushd $i
 		. init.sh || {
 			clog 1 "[shellyMeta_runSubShelly()]" init.sh of $i failed!
 			return 1
 		}
-		cd ..
+		popd
 	done
-	
-	cd $oldpwd
+	popd
 	
 	return 0
 }
