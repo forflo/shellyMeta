@@ -14,7 +14,12 @@ Usage
 * shellyRepo
 
 3) Changes into the particular directory and executes the file init.sh. 
-Directories are ~/repos/git/shellyCode ~/repos/git/shellyConfig [...].
+Directories are:
+
+    ~/repos/git/shellyCode 
+    ~/repos/git/shellyConfig
+    ~/repos/git/shellyRepo
+    ~/repos/git/shellyEditor
 
 Links
 =====
