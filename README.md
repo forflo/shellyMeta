@@ -1,15 +1,18 @@
 Usage
 =====
 1) Creates following directory structure:
----->/home/<user>/repos
-                  +-git
-                  +-svn
-                  +-hg
+
+    /home/<user>/repos
+                 +-git
+                 +-svn
+                 +-hg
+                 
 2) Downloads the repos
 * shellyCode
 * shellyConfig
 * shellyEditor
 * shellyRepo
+
 3) Changes into the particular directory and executes the file init.sh. 
 Directories are ~/repos/git/shellyCode ~/repos/git/shellyConfig [...].
 
